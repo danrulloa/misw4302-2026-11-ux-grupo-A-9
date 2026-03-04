@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta de colores Base -->
+    <color name="primario_base">#3A7CA5</color>
+    <color name="secundario_base">#6BA2BA</color>
+    <color name="acento_base">#4EC5C1</color>
+    <color name="fondo_base">#F4F7FA</color>
+    <color name="textos_base">#2F3E46</color>
+    <color name="exito_base">#4CAF50</color>
+    <color name="error_base">#D9534F</color>
+</resources>
