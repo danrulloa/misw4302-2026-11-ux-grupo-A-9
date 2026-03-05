@@ -1,0 +1,84 @@
+@use 'styles/typography' as typo;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.seleccion {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 112px);
+  overflow: hidden;
+  background-color: var(--color-fondo-claro);
+
+  &__logo {
+    position: absolute;
+    top: 6px;
+    left: 55px;
+    width: 83px;
+    height: 100px;
+    z-index: 5;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 3;
+    max-width: 1112px;
+    margin: 0 auto;
+    padding: 140px 28px 80px;
+  }
+
+  &__title {
+    @include typo.pantalla-grande;
+    color: var(--color-textos-base);
+    margin-bottom: 16px;
+  }
+
+  &__subtitle {
+    @include typo.titulo-large;
+    color: var(--color-textos-base);
+    margin-bottom: 40px;
+  }
+
+  &__profile-area {
+    margin-bottom: 48px;
+    max-width: 690px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &--family {
+      margin-top: 48px;
+    }
+  }
+
+  &__family-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 32px;
+    gap: 48px;
+  }
+
+  &__family-content {
+    flex: 1;
+  }
+
+  &__family-title {
+    @include typo.display-small-emphasized;
+    color: var(--color-textos-base);
+    margin-bottom: 16px;
+  }
+
+  &__family-desc {
+    @include typo.titulo-large;
+    color: var(--color-textos-base);
+  }
+}

@@ -1,0 +1,12 @@
+<button
+  class="ds-btn"
+  [class.ds-btn--primary]="variant() === 'primary'"
+  [class.ds-btn--accent]="variant() === 'accent'"
+  [type]="buttonType()"
+  (click)="onClick()"
+>
+  @if (icon()) {
+    <span class="material-icons-outlined">{{ icon() }}</span>
+  }
+  <span>{{ label() }}</span>
+</button>

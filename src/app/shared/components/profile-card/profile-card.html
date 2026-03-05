@@ -1,0 +1,12 @@
+<div class="profile-card">
+  <div class="profile-card__avatar">
+    <span class="profile-card__initials">{{ initials() }}</span>
+  </div>
+  <div class="profile-card__info">
+    <span class="profile-card__name">{{ profileName() }}</span>
+    <span class="profile-card__relation">{{ relation() }}</span>
+  </div>
+  <button class="profile-card__enter-btn" (click)="onEnter()">
+    Entrar
+  </button>
+</div>
