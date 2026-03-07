@@ -18,6 +18,7 @@ export class SeleccionPerfil {
   constructor(private router: Router) {}
 
   onEnterProfile(): void {
+    this.userService.activeProfile.set('own');
     this.router.navigate(['/home-alarmas']);
   }
 

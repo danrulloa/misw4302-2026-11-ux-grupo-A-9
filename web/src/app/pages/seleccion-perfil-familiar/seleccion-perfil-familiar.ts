@@ -18,10 +18,12 @@ export class SeleccionPerfilFamiliar {
   constructor(private router: Router) {}
 
   onEnterMainProfile(): void {
+    this.userService.activeProfile.set('own');
     this.router.navigate(['/home-alarmas']);
   }
 
   onEnterFamilyProfile(): void {
+    this.userService.activeProfile.set('family');
     this.router.navigate(['/home-alarmas']);
   }
 

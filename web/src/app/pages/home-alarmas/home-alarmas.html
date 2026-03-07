@@ -1,0 +1,55 @@
+<section class="home">
+  <app-page-background />
+
+  <div class="home__nav">
+    <app-navbar-auth
+      [userName]="userService.activeProfileName()"
+      [userRelation]="userService.activeProfileRelation()"
+      [activeTab]="0"
+      (activeTabChange)="onTabChange($event)"
+    />
+  </div>
+
+  <div class="home__content">
+    <div class="home__header">
+      <div>
+        <h1 class="home__title">Alarmas de medicamentos</h1>
+        <p class="home__subtitle">Gestiona las alarmas de medicamentos para este perfil</p>
+      </div>
+      <app-ds-button
+        label="Agregar Alarma"
+        icon="add_circle_outline"
+        variant="accent"
+        (clicked)="onAgregarAlarma()"
+      />
+    </div>
+
+    <app-divider />
+
+    @if (userService.activeAlarmas().length === 0) {
+      <div class="home__empty">
+        <span class="material-icons-outlined home__empty-icon">notifications_off</span>
+        <p class="home__empty-text">No hay alarmas configuradas</p>
+        <p class="home__empty-hint">Agrega tu primera alarma de medicamento</p>
+      </div>
+    } @else {
+      <div class="home__alarmas">
+        @for (alarma of userService.activeAlarmas(); track $index) {
+          <div class="home__alarma-item" [class.home__alarma-item--disabled]="!alarma.activa">
+            <div class="home__alarma-info">
+              <span class="home__alarma-nombre">{{ alarma.nombre }}</span>
+              <span class="home__alarma-detalle">
+                <span [class.home__alarma-hora-off]="!alarma.activa">{{ alarma.hora }}</span>
+                 · {{ alarma.frecuencia }}
+              </span>
+            </div>
+            <label class="home__switch">
+              <input type="checkbox" [checked]="alarma.activa" (change)="toggleAlarma($index)" />
+              <span class="home__switch-slider"></span>
+            </label>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

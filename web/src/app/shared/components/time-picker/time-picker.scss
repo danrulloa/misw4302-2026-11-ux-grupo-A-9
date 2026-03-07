@@ -1,0 +1,222 @@
+@use 'styles/typography' as typo;
+
+.picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.time-picker {
+  background-color: var(--color-fondo-base);
+  border-radius: 28px;
+  width: 330px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__label {
+    @include typo.cuerpo-pequena;
+    color: var(--color-primario-base);
+  }
+
+  &__input-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  &__inputs {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  &__field {
+    flex: 1;
+    height: 80px;
+    border-radius: 8px;
+    background-color: var(--color-fondo-oscuro);
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-size: 57px;
+    font-weight: 400;
+    color: var(--color-primario-oscuro);
+    cursor: pointer;
+    position: relative;
+
+    &--active {
+      background-color: var(--color-primario-oscuro);
+      color: var(--color-fondo-base);
+    }
+
+    &-input {
+      width: 100%;
+      height: 72px;
+      border: 2px solid var(--color-primario-base);
+      border-radius: 8px;
+      background-color: var(--color-secundario-claro);
+      font-family: var(--font-primary);
+      font-size: 45px;
+      font-weight: 400;
+      color: var(--color-primario-base);
+      text-align: center;
+      outline: none;
+    }
+
+    &-label {
+      @include typo.cuerpo-pequena;
+      color: var(--color-primario-oscuro);
+      margin-top: 4px;
+    }
+  }
+
+  &__colon {
+    font-family: var(--font-primary);
+    font-size: 57px;
+    font-weight: 400;
+    color: var(--color-primario-oscuro);
+    line-height: 80px;
+    width: 24px;
+    text-align: center;
+  }
+
+  &__period {
+    width: 52px;
+    height: 80px;
+    border: 1px solid var(--color-primario-base);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      @include typo.cuerpo-grande;
+      font-weight: 500;
+      color: var(--color-primario-base);
+      cursor: pointer;
+
+      &--active {
+        background-color: var(--color-secundario-claro);
+        color: var(--color-fondo-claro);
+      }
+
+      &:first-child {
+        border-bottom: 1px solid var(--color-primario-base);
+      }
+    }
+  }
+
+  &__clock {
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    background-color: var(--color-fondo-oscuro);
+    position: relative;
+    margin: 0 auto;
+  }
+
+  &__hour {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    @include typo.cuerpo-grande;
+    color: var(--color-primario-oscuro);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: calc(50% - 24px);
+    top: calc(50% - 24px);
+    transform: rotate(var(--angle)) translateY(-104px) rotate(calc(-1 * var(--angle)));
+
+    &:hover:not(&--selected) {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    &--selected {
+      background-color: var(--color-primario-base);
+      color: var(--color-fondo-base);
+    }
+  }
+
+  &__center {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-primario-base);
+    top: calc(50% - 4px);
+    left: calc(50% - 4px);
+  }
+
+  &__hand {
+    position: absolute;
+    width: 2px;
+    height: 104px;
+    background-color: var(--color-primario-base);
+    left: calc(50% - 1px);
+    bottom: 50%;
+    transform-origin: bottom center;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__icon-btn {
+    width: 48px;
+    height: 48px;
+    border: none;
+    background: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .material-icons-outlined {
+      font-size: 24px;
+      color: var(--color-primario-base);
+    }
+
+    &:hover {
+      background: var(--color-fondo-oscuro);
+    }
+  }
+
+  &__btns {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__btn {
+    @include typo.etiqueta-grande;
+    color: var(--color-primario-base);
+    border: none;
+    background: none;
+    padding: 10px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-fondo-oscuro);
+    }
+  }
+}
