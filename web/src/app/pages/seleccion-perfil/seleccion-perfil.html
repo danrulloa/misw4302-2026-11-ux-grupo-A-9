@@ -1,0 +1,34 @@
+<section class="seleccion">
+  <app-page-background />
+
+  <div class="seleccion__content">
+    <h1 class="seleccion__title">¿Qué perfil quieres gestionar?</h1>
+    <p class="seleccion__subtitle">
+      Selecciona tu perfil o uno de tu familia para administrar alarmas de medicamentos.
+    </p>
+
+    <div class="seleccion__profile-area">
+      <app-profile-card
+        [initials]="userService.userInitials()"
+        [profileName]="userService.userName()"
+        relation="(Tu Perfil)"
+        (enterClicked)="onEnterProfile()"
+      />
+    </div>
+
+    <app-divider />
+
+    <div class="seleccion__family-section">
+      <div class="seleccion__family-content">
+        <h2 class="seleccion__family-title">PERFILES DE FAMILIA</h2>
+        <p class="seleccion__family-desc">
+          Crea y administra perfiles de familiares para gestionar sus alarmas y seguimiento.
+        </p>
+        <p class="seleccion__family-note">Puedes crear varios perfiles</p>
+      </div>
+      <app-add-family-card (addClicked)="onAddFamily()" />
+    </div>
+  </div>
+
+
+</section>

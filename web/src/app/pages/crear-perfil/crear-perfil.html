@@ -1,0 +1,89 @@
+<section class="crear-perfil">
+  <app-page-background />
+
+  <div class="crear-perfil__nav">
+    <app-navbar-auth />
+  </div>
+
+  <div class="crear-perfil__content">
+    <h1 class="crear-perfil__title">CREAR PERFIL FAMILIAR</h1>
+    <p class="crear-perfil__subtitle">
+      Después de crearlo podrás seleccionarlo para gestionar sus alarmas
+    </p>
+
+    <app-divider />
+
+    <div class="crear-perfil__form">
+      <app-text-field
+        label="Nombre"
+        icon="person"
+        placeholder="Nombre y apellido"
+        fieldName="nombre-perfil"
+        [(value)]="nombre"
+      />
+
+      <div class="crear-perfil__dropdown">
+        <div class="crear-perfil__dropdown-trigger" (click)="toggleDropdown()">
+          <span class="crear-perfil__dropdown-label">
+            {{ selectedRelacion || 'Relación/parentesco contigo' }}
+          </span>
+          <span class="material-icons-outlined crear-perfil__dropdown-icon"
+            [class.crear-perfil__dropdown-icon--expanded]="dropdownOpen">
+            keyboard_arrow_down
+          </span>
+        </div>
+        @if (dropdownOpen) {
+          <div class="crear-perfil__dropdown-menu">
+            @for (relacion of relaciones; track relacion) {
+              <button
+                class="crear-perfil__dropdown-item"
+                [class.crear-perfil__dropdown-item--selected]="relacion === selectedRelacion"
+                (click)="selectRelacion(relacion)"
+              >
+                {{ relacion }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="crear-perfil__checkbox-field" [class.crear-perfil__checkbox-field--disabled]="isMascota">
+        <label class="crear-perfil__checkbox">
+          <input type="checkbox" [(ngModel)]="checkboxActive" [disabled]="isMascota" />
+          <span class="crear-perfil__checkbox-mark"></span>
+        </label>
+        <div class="crear-perfil__checkbox-input">
+          <app-text-field
+            label="Correo"
+            icon="mail"
+            placeholder="nombre@correo.com"
+            fieldType="email"
+            fieldName="correo-perfil"
+            supportingText="Enviar invitación por correo (opcional). Si seleccionas Mascota, no se solicita correo."
+            [disabled]="isEmailDisabled"
+            [(value)]="correo"
+          />
+        </div>
+      </div>
+
+      <div class="crear-perfil__actions">
+        <app-ds-button
+          label="Cancelar"
+          icon="gpp_bad"
+          variant="primary"
+          (clicked)="onCancel()"
+        />
+        <app-ds-button
+          label="Registrar"
+          icon="check_circle_outline"
+          variant="accent"
+          (clicked)="onSave()"
+        />
+      </div>
+
+      <p class="crear-perfil__note">
+        Este perfil será administrado desde tu cuenta principal.
+      </p>
+    </div>
+  </div>
+</section>

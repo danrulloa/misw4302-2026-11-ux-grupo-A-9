@@ -1,0 +1,41 @@
+@use 'styles/typography' as typo;
+
+:host {
+  display: inline-block;
+}
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 12px;
+  @include typo.etiqueta-grande;
+  color: var(--color-fondo-base);
+  cursor: pointer;
+  min-width: 180px;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+
+  .material-icons-outlined {
+    font-size: 20px;
+  }
+
+  &:hover {
+    opacity: 0.9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &--primary {
+    background-color: var(--color-primario-base);
+  }
+
+  &--accent {
+    background-color: var(--color-acento-base);
+  }
+}

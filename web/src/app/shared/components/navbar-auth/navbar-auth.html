@@ -1,0 +1,20 @@
+<nav class="navbar-auth">
+  <img src="assets/images/navbar-menu.svg" alt="" class="navbar-auth__bg" />
+  <div class="navbar-auth__overlay">
+    <div class="navbar-auth__user">
+      <span class="navbar-auth__name">{{ userName() }}</span>
+      <span class="navbar-auth__relation">{{ userRelation() }}</span>
+    </div>
+    <div class="navbar-auth__tabs">
+      @for (tab of tabs(); track tab; let i = $index) {
+        <button
+          class="navbar-auth__tab"
+          [class.navbar-auth__tab--active]="i === activeTab()"
+          (click)="onTabClick(i)"
+        >
+          {{ tab }}
+        </button>
+      }
+    </div>
+  </div>
+</nav>

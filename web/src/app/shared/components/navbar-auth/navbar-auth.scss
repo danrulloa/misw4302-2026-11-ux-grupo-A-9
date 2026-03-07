@@ -1,0 +1,81 @@
+@use 'styles/typography' as typo;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.navbar-auth {
+  width: 100%;
+  height: 112px;
+  position: relative;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  background-color: var(--color-fondo-base);
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: none;
+    object-position: left top;
+  }
+
+  &__overlay {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 24px 0 160px;
+  }
+
+  &__user {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  &__name {
+    @include typo.encabezado-medium;
+    color: var(--color-textos-base);
+  }
+
+  &__relation {
+    @include typo.encabezado-pequena;
+    color: var(--color-textos-base);
+  }
+
+  &__tabs {
+    display: flex;
+    margin-left: auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  &__tab {
+    @include typo.encabezado-pequena;
+    padding: 16px 32px;
+    border: none;
+    background-color: var(--color-fondo-claro);
+    color: var(--color-textos-base);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 16px;
+
+    &--active {
+      background-color: var(--color-primario-base);
+      color: var(--color-fondo-claro);
+    }
+
+    &:hover:not(&--active) {
+      background-color: var(--color-secundario-claro);
+    }
+
+    &:active:not(&--active) {
+      background-color: var(--color-primario-base);
+      color: var(--color-fondo-claro);
+    }
+  }
+}

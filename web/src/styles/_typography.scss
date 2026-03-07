@@ -1,0 +1,82 @@
+@mixin pantalla-grande {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 57px;
+  line-height: 1.12;
+  letter-spacing: -0.25px;
+}
+
+@mixin pantalla-pequena {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.22;
+}
+
+@mixin encabezado-medium {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+@mixin encabezado-pequena {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+@mixin titulo-large {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.27;
+}
+
+@mixin titulo-small {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: 0.1px;
+}
+
+@mixin display-small-emphasized {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.22;
+}
+
+@mixin cuerpo-grande {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+}
+
+@mixin cuerpo-medium {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: 0.25px;
+}
+
+@mixin cuerpo-pequena {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.4px;
+}
+
+@mixin etiqueta-grande {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: 0.1px;
+}
