@@ -13,7 +13,9 @@ export class TextField {
   placeholder = input('');
   fieldType = input<'text' | 'email' | 'password'>('text');
   supportingText = input('');
+  errorText = input('');
   fieldName = input.required<string>();
+  disabled = input(false);
   value = model('');
 
   isFocused = false;

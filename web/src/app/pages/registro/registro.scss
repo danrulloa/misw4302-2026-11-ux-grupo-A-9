@@ -11,6 +11,8 @@
   min-height: calc(100vh - 112px);
   overflow: hidden;
   background-color: var(--color-fondo-claro);
+  display: flex;
+  flex-direction: column;
 
   &__content {
     position: relative;

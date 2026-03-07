@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageBackground } from '../../shared/components/page-background/page-background';
 import { ProfileCard } from '../../shared/components/profile-card/profile-card';
 import { AddFamilyCard } from '../../shared/components/add-family-card/add-family-card';
 import { Divider } from '../../shared/components/divider/divider';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-seleccion-perfil-familiar',
@@ -12,14 +13,16 @@ import { Divider } from '../../shared/components/divider/divider';
   styleUrl: './seleccion-perfil-familiar.scss',
 })
 export class SeleccionPerfilFamiliar {
+  userService = inject(UserService);
+
   constructor(private router: Router) {}
 
   onEnterMainProfile(): void {
-    console.log('Entering main profile');
+    this.router.navigate(['/home-alarmas']);
   }
 
   onEnterFamilyProfile(): void {
-    console.log('Entering family profile');
+    this.router.navigate(['/home-alarmas']);
   }
 
   onAddFamily(): void {

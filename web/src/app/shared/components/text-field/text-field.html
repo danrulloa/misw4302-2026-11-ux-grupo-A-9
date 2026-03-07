@@ -1,10 +1,14 @@
 <div class="form-field">
-  <div class="form-field__container" [class.form-field__container--focused]="isFocused">
+  <div class="form-field__container"
+    [class.form-field__container--focused]="isFocused"
+    [class.form-field__container--disabled]="disabled()"
+    [class.form-field__container--error]="errorText()">
     <div class="form-field__icon">
       <span class="material-icons-outlined">{{ icon() }}</span>
     </div>
     <div class="form-field__input-wrapper">
-      <label class="form-field__label" [attr.for]="fieldName()">
+      <label class="form-field__label" [attr.for]="fieldName()"
+        [class.form-field__label--error]="errorText()">
         {{ label() }}
       </label>
       <input
@@ -14,12 +18,17 @@
         [(ngModel)]="value"
         [name]="fieldName()"
         [placeholder]="placeholder()"
+        [disabled]="disabled()"
         (focus)="isFocused = true"
         (blur)="isFocused = false"
       />
     </div>
   </div>
-  @if (supportingText()) {
+  @if (errorText()) {
+    <div class="form-field__error-text">
+      {{ errorText() }}
+    </div>
+  } @else if (supportingText()) {
     <div class="form-field__supporting-text">
       {{ supportingText() }}
     </div>

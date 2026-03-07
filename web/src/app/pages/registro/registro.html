@@ -10,6 +10,7 @@
         icon="person"
         placeholder="Nombre y apellido"
         fieldName="nombre"
+        [errorText]="errorNombre"
         [(value)]="nombre"
       />
       <app-text-field
@@ -18,6 +19,7 @@
         placeholder="nombre@correo.com"
         fieldType="email"
         fieldName="correo"
+        [errorText]="errorCorreo"
         [(value)]="correo"
       />
       <app-text-field
@@ -26,6 +28,8 @@
         placeholder="Ingresa tu nueva contraseña"
         fieldType="password"
         fieldName="password"
+        supportingText="Mín. 8 caracteres, letras, números y caracteres especiales"
+        [errorText]="errorPassword"
         [(value)]="password"
       />
       <app-text-field
@@ -34,7 +38,8 @@
         placeholder="Ingresa tu nueva contraseña de nuevo"
         fieldType="password"
         fieldName="confirmPassword"
-        supportingText="Las contraseñas deben ser identicas"
+        supportingText="Las contraseñas deben ser idénticas"
+        [errorText]="errorConfirmPassword"
         [(value)]="confirmPassword"
       />
 

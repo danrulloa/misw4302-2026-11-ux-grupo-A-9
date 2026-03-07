@@ -5,21 +5,18 @@
 
 .navbar {
   width: 100%;
+  height: 112px;
   background-color: var(--color-fondo-base);
   border-radius: 16px 16px 0 0;
   overflow: hidden;
 
-  &__content {
-    width: 100%;
-  }
-
   &__logo {
-    width: 100%;
-    display: block;
+    height: 100%;
 
     img {
-      width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: none;
+      object-position: left top;
       display: block;
     }
   }

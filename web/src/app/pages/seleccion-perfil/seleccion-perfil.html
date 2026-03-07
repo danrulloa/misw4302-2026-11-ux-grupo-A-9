@@ -1,10 +1,6 @@
 <section class="seleccion">
   <app-page-background />
 
-  <div class="seleccion__logo">
-    <img src="assets/images/pattern-bg-54c89a.png" alt="Logo" />
-  </div>
-
   <div class="seleccion__content">
     <h1 class="seleccion__title">¿Qué perfil quieres gestionar?</h1>
     <p class="seleccion__subtitle">
@@ -13,8 +9,8 @@
 
     <div class="seleccion__profile-area">
       <app-profile-card
-        initials="C"
-        profileName="Nombre"
+        [initials]="userService.userInitials()"
+        [profileName]="userService.userName()"
         relation="(Tu Perfil)"
         (enterClicked)="onEnterProfile()"
       />
@@ -34,14 +30,5 @@
     </div>
   </div>
 
-  @if (showConfirmDialog) {
-    <app-confirm-dialog
-      title="Agregar perfil familiar"
-      message="Este perfil quedará asociado a tu cuenta para que puedas gestionar sus alarmas y hábitos"
-      confirmLabel="Ok"
-      [cancelLabel]="''"
-      (confirmed)="onConfirmAdd()"
-      (cancelled)="onCancelAdd()"
-    />
-  }
+
 </section>

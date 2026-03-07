@@ -22,19 +22,34 @@
         [(value)]="nombre"
       />
 
-      <div class="crear-perfil__accordion" (click)="toggleRelacion()">
-        <div class="crear-perfil__accordion-content">
-          <span class="crear-perfil__accordion-label">Relación/parentesco contigo</span>
+      <div class="crear-perfil__dropdown">
+        <div class="crear-perfil__dropdown-trigger" (click)="toggleDropdown()">
+          <span class="crear-perfil__dropdown-label">
+            {{ selectedRelacion || 'Relación/parentesco contigo' }}
+          </span>
+          <span class="material-icons-outlined crear-perfil__dropdown-icon"
+            [class.crear-perfil__dropdown-icon--expanded]="dropdownOpen">
+            keyboard_arrow_down
+          </span>
         </div>
-        <span class="material-icons-outlined crear-perfil__accordion-icon"
-          [class.crear-perfil__accordion-icon--expanded]="relacionExpanded">
-          keyboard_arrow_down
-        </span>
+        @if (dropdownOpen) {
+          <div class="crear-perfil__dropdown-menu">
+            @for (relacion of relaciones; track relacion) {
+              <button
+                class="crear-perfil__dropdown-item"
+                [class.crear-perfil__dropdown-item--selected]="relacion === selectedRelacion"
+                (click)="selectRelacion(relacion)"
+              >
+                {{ relacion }}
+              </button>
+            }
+          </div>
+        }
       </div>
 
-      <div class="crear-perfil__checkbox-field">
+      <div class="crear-perfil__checkbox-field" [class.crear-perfil__checkbox-field--disabled]="isMascota">
         <label class="crear-perfil__checkbox">
-          <input type="checkbox" [(ngModel)]="checkboxActive" />
+          <input type="checkbox" [(ngModel)]="checkboxActive" [disabled]="isMascota" />
           <span class="crear-perfil__checkbox-mark"></span>
         </label>
         <div class="crear-perfil__checkbox-input">
@@ -45,6 +60,7 @@
             fieldType="email"
             fieldName="correo-perfil"
             supportingText="Enviar invitación por correo (opcional). Si seleccionas Mascota, no se solicita correo."
+            [disabled]="isEmailDisabled"
             [(value)]="correo"
           />
         </div>

@@ -1,59 +1,126 @@
-# MedicamentosApp
+# Gestión de Medicamentos de la Familia
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+**La app que cuida a tu familia cuando tú no puedes estar ahí.**
 
-## Development server
+Esta app nace de un problema real: las familias colombianas cuidan a múltiples personas — hijos, padres mayores que viven lejos, incluso mascotas — y no existe una forma unificada de saber si todos están tomando sus medicamentos correctamente. Una dosis olvidada puede ser una molestia; una dosis doble puede ser peligrosa.
 
-To start a local development server, run:
+Nuestra investigación con 30 usuarios reveló que el 40% usa las alarmas del celular para recordar medicamentos, pero ninguna app del mercado ofrece visibilidad compartida entre cuidadores. Esta app resuelve esto: un solo lugar donde toda la familia puede gestionar alarmas de medicamentos, confirmar la toma y coordinar el cuidado, desde la web o desde el celular.
 
-```bash
-ng serve
+## Proyecto académico
+
+| | |
+|---|---|
+| **Curso** | UX - Mejoramiento de la Experiencia de Usuario |
+| **Programa** | Maestría en Ingeniería de Software (MISO) - Universidad de los Andes |
+| **Equipo** | Grupo A-9: Daniel Ulloa · David Cruz |
+| **Repositorio** | https://github.com/danrulloa/misw4302-2026-11-ux-grupo-A-9.git |
+
+## Estructura del repositorio
+
+```
+misw4302-2026-11-ux-grupo-A-9/
+├── web/              → Aplicación Web (Angular 21)
+│   ├── src/app/
+│   │   ├── pages/                # Pantallas de la aplicación
+│   │   ├── components/           # Componentes de layout
+│   │   └── shared/
+│   │       ├── components/       # Design System (componentes reutilizables)
+│   │       └── services/         # Servicios compartidos
+│   └── public/assets/            # Imágenes y recursos
+└── mobile/           → Aplicación Mobile (Android - Jetpack Compose)
+    └── app/src/main/java/.../ui/
+        ├── screens/              # Pantallas
+        ├── components/           # Componentes reutilizables
+        ├── navigation/           # Navegación
+        └── theme/                # Tema y estilos
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Aplicación Web
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Prototipo interactivo de alta fidelidad desarrollado en **Angular 21** con SCSS y Material Icons.
 
-```bash
-ng generate component component-name
-```
+### Requisitos previos
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- [Node.js](https://nodejs.org/) v18 o superior (incluye npm)
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Instalación y ejecución
 
 ```bash
-ng build
+# Clonar el repositorio
+git clone https://github.com/danrulloa/misw4302-2026-11-ux-grupo-A-9.git
+
+# Entrar a la carpeta web
+cd misw4302-2026-11-ux-grupo-A-9/web
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
+npx ng serve
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Abrir en el navegador: **http://localhost:4200/**
 
-## Running unit tests
+### Pantallas y flujo de navegación
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+```
+Registro → Selección de Perfil → Crear Perfil Familiar → Selección con Familiar
+                                        ↑ Cancelar vuelve
+```
+
+| Pantalla | Ruta | Descripción |
+|---|---|---|
+| Registro | `/registro` | Formulario de registro con validación de campos |
+| Selección de Perfil | `/seleccion-perfil` | Perfil del usuario con opción de agregar familiares |
+| Crear Perfil Familiar | `/crear-perfil` | Formulario con dropdown de relación y campo de correo condicional |
+| Selección con Familiar | `/seleccion-perfil-familiar` | Vista con perfil propio y perfil familiar creado |
+
+### Design System
+
+| Token | Valor |
+|---|---|
+| Primario | `#3A7CA5` |
+| Secundario | `#6BA2BA` |
+| Acento | `#4EC5C1` |
+| Error | `#D9534F` |
+| Fuente primaria | Nunito |
+| Fuente secundaria | Roboto |
+
+Componentes reutilizables: `text-field`, `ds-button`, `profile-card`, `navbar-auth`, `page-background`, `divider`, `add-family-card`, `confirm-dialog`
+
+### Build de producción
 
 ```bash
-ng test
+cd web
+npx ng build
 ```
 
-## Running end-to-end tests
+Archivos generados en `web/dist/medicamentos-app/`.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## Aplicación Mobile
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Prototipo interactivo de alta fidelidad desarrollado en **Kotlin** con **Jetpack Compose** para Android.
 
-## Additional Resources
+### Requisitos previos
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Android Studio](https://developer.android.com/studio) (última versión estable)
+- JDK 17 o superior
+
+### Instalación y ejecución
+
+_Instrucciones pendientes._
+
+### Pantallas
+
+| Pantalla | Descripción |
+|---|---|
+| Login | Inicio de sesión |
+| Registro | Registro de nuevo usuario |
+| Selección de Usuario | Selección de perfil a gestionar |
+| Home Personal | Dashboard de alarmas por perfil (Alejandra, Cecilia, Polo) |
+| Crear Alarma | Formulario de nueva alarma de medicamento |
+| Historial | Historial de tomas de medicamento |

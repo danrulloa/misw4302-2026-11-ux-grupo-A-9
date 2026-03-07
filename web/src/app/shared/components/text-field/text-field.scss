@@ -21,6 +21,17 @@
       border-color: var(--color-primario-base);
       border-width: 2px;
     }
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      background-color: var(--color-fondo-base);
+    }
+
+    &--error {
+      border-color: var(--color-error-base);
+      border-width: 2px;
+    }
   }
 
   &__icon {
@@ -73,9 +84,19 @@
     }
   }
 
+  &__label--error {
+    color: var(--color-error-base);
+  }
+
   &__supporting-text {
     @include typo.cuerpo-pequena;
     color: var(--color-textos-claro);
+    padding: 4px 16px 0;
+  }
+
+  &__error-text {
+    @include typo.cuerpo-pequena;
+    color: var(--color-error-base);
     padding: 4px 16px 0;
   }
 }
