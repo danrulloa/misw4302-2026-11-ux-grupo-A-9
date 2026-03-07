@@ -108,19 +108,49 @@ Prototipo interactivo de alta fidelidad desarrollado en **Kotlin** con **Jetpack
 ### Requisitos previos
 
 - [Android Studio](https://developer.android.com/studio) (última versión estable)
-- JDK 17 o superior
 
-### Instalación y ejecución
+### Instalación y ejecución con Android Studio
 
-_Instrucciones pendientes._
+```bash
+# Clonar el repositorio
+git clone https://github.com/danrulloa/misw4302-2026-11-ux-grupo-A-9.git
+```
 
-### Pantallas
+1. Abrir **Android Studio**
+2. **File → Open** → seleccionar la carpeta `mobile/` del repositorio
+3. Esperar a que **Gradle sincronice** las dependencias (puede tomar varios minutos la primera vez)
+4. **Tools → Device Manager** → **Create Virtual Device** → seleccionar un dispositivo (ej: Pixel 7) → descargar imagen del sistema (API 34) → Finish
+5. Iniciar el emulador desde Device Manager
+6. Click en **Run ▶** (o Shift+F10) para compilar e instalar la app
+
+### Instalación con APK
+
+También se puede instalar directamente el archivo APK en un dispositivo o emulador Android:
+
+1. Descargar el archivo APK de la entrega
+2. En el dispositivo Android: Ajustes → Seguridad → Permitir instalación de fuentes desconocidas
+3. Abrir el archivo APK e instalar
+
+### Generar el APK desde Android Studio
+
+1. **Build → Build Bundle(s) / APK(s) → Build APK(s)**
+2. El archivo se genera en `mobile/app/build/outputs/apk/debug/app-debug.apk`
+
+### Pantallas y flujo de navegación
+
+```
+Login → Selección de Usuario → Home Personal (Alejandra/Cecilia/Polo) → Crear Alarma
+  ↓                                    ↓                                      ↑
+Registro                           Historial                            (Agregar vuelve)
+```
 
 | Pantalla | Descripción |
 |---|---|
-| Login | Inicio de sesión |
+| Login | Inicio de sesión con navegación a Registro |
 | Registro | Registro de nuevo usuario |
-| Selección de Usuario | Selección de perfil a gestionar |
-| Home Personal | Dashboard de alarmas por perfil (Alejandra, Cecilia, Polo) |
-| Crear Alarma | Formulario de nueva alarma de medicamento |
+| Selección de Usuario | Selección de perfil a gestionar (Alejandra, Cecilia, Polo) |
+| Home Personal Alejandra | Dashboard de alarmas con switches ON/OFF |
+| Home Personal Cecilia | Dashboard de alarmas (perfil Mamá) |
+| Home Personal Polo | Dashboard de alarmas (perfil Mascota) |
+| Crear Alarma | Formulario con date picker, time picker, dropdown, checkboxes |
 | Historial | Historial de tomas de medicamento |

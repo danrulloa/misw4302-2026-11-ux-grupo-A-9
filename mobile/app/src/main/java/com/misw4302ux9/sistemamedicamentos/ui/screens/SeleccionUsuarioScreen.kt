@@ -29,7 +29,12 @@ import com.misw4302ux9.sistemamedicamentos.ui.theme.SistemaMedicamentosTheme
 import com.misw4302ux9.sistemamedicamentos.ui.theme.TextosBase
 
 @Composable
-fun SeleccionUsuarioScreen(modifier: Modifier = Modifier) {
+fun SeleccionUsuarioScreen(
+    onNavigateToAlejandra: () -> Unit,
+    onNavigateToCecilia: () -> Unit,
+    onNavigateToPolo: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     // ScreenBackground proporciona el color de fondo (FondoBase), la textura y el degradado inferior
     ScreenBackground {
         Column(
@@ -91,7 +96,7 @@ fun SeleccionUsuarioScreen(modifier: Modifier = Modifier) {
                 headline = "Alejandra",
                 supportingText = "(Tu perfil)",
                 trailingText = "Entrar",
-                onClick = { /* TODO */ }
+                onClick = onNavigateToAlejandra
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -147,7 +152,7 @@ fun SeleccionUsuarioScreen(modifier: Modifier = Modifier) {
                 headline = "Cecilia",
                 supportingText = "(Mamá)",
                 trailingText = "Entrar",
-                onClick = { /* TODO */ }
+                onClick = onNavigateToCecilia
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -157,7 +162,7 @@ fun SeleccionUsuarioScreen(modifier: Modifier = Modifier) {
                 headline = "Polo",
                 supportingText = "(Mascota)",
                 trailingText = "Entrar",
-                onClick = { /* TODO */ }
+                onClick = onNavigateToPolo
             )
 
             Spacer(modifier = Modifier.height(40.dp))
@@ -169,6 +174,10 @@ fun SeleccionUsuarioScreen(modifier: Modifier = Modifier) {
 @Composable
 fun SeleccionUsuarioScreenPreview() {
     SistemaMedicamentosTheme {
-        SeleccionUsuarioScreen()
+        SeleccionUsuarioScreen(
+            onNavigateToAlejandra = {},
+            onNavigateToCecilia = {},
+            onNavigateToPolo = {}
+        )
     }
 }
