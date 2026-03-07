@@ -2,7 +2,11 @@
   <app-page-background />
 
   <div class="crear-perfil__nav">
-    <app-navbar-auth />
+    <app-navbar-auth
+      [userName]="userService.userName()"
+      userRelation="(Tu Perfil)"
+      [activeTab]="2"
+    />
   </div>
 
   <div class="crear-perfil__content">

@@ -1,0 +1,45 @@
+<div class="picker-overlay" (click)="onCancel()">
+  <div class="date-picker" (click)="$event.stopPropagation()">
+    <div class="date-picker__header">
+      <span class="date-picker__label">Seleccionar fecha</span>
+      <span class="date-picker__selected">Lun, Ago {{ selectedDay() }}</span>
+    </div>
+
+    <div class="date-picker__nav">
+      <span class="date-picker__month">Agosto 2025</span>
+      <div class="date-picker__arrows">
+        <span class="material-icons-outlined">chevron_left</span>
+        <span class="material-icons-outlined">chevron_right</span>
+      </div>
+    </div>
+
+    <div class="date-picker__grid">
+      <div class="date-picker__weekdays">
+        @for (d of weekDays; track d) {
+          <span class="date-picker__weekday">{{ d }}</span>
+        }
+      </div>
+      @for (week of days; track $index) {
+        <div class="date-picker__week">
+          @for (day of week; track $index) {
+            @if (day === 0) {
+              <span class="date-picker__day date-picker__day--empty"></span>
+            } @else {
+              <button class="date-picker__day"
+                [class.date-picker__day--selected]="day === selectedDay()"
+                [class.date-picker__day--today]="day === today"
+                (click)="selectDay(day)">
+                {{ day }}
+              </button>
+            }
+          }
+        </div>
+      }
+    </div>
+
+    <div class="date-picker__actions">
+      <button class="date-picker__btn" (click)="onCancel()">Cancelar</button>
+      <button class="date-picker__btn date-picker__btn--primary" (click)="onOk()">OK</button>
+    </div>
+  </div>
+</div>

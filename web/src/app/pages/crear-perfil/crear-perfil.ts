@@ -31,7 +31,7 @@ export class CrearPerfil {
     return this.isMascota || !this.checkboxActive;
   }
 
-  private userService = inject(UserService);
+  userService = inject(UserService);
 
   constructor(private router: Router) {}
 
@@ -55,6 +55,7 @@ export class CrearPerfil {
   onSave(): void {
     this.userService.familyName.set(this.nombre.trim() || 'Nombre perfil familiar');
     this.userService.familyRelation.set(this.selectedRelacion || 'relación contigo');
+    this.userService.hasFamilyProfile.set(true);
     this.router.navigate(['/seleccion-perfil-familiar']);
   }
 }

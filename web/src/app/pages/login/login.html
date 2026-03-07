@@ -1,0 +1,44 @@
+<section class="login">
+  <app-page-background />
+
+  <div class="login__content">
+    <h1 class="login__title">Login</h1>
+    <p class="login__subtitle">Ingresa tus datos para acceder a tu cuenta</p>
+
+    <div class="login__form">
+      <app-text-field
+        label="Correo"
+        icon="mail"
+        placeholder="nombre@correo.com"
+        fieldType="email"
+        fieldName="login-correo"
+        [(value)]="correo"
+      />
+      <app-text-field
+        label="Contraseña"
+        icon="vpn_key"
+        placeholder="Ingresa tu contraseña"
+        fieldType="password"
+        fieldName="login-password"
+        [(value)]="password"
+      />
+
+      <a class="login__forgot-link" href="javascript:void(0)">Recuperar contraseña</a>
+
+      <div class="login__actions">
+        <app-ds-button
+          label="Registro"
+          icon="person_add"
+          variant="primary"
+          (clicked)="onRegistro()"
+        />
+        <app-ds-button
+          label="Ingresar"
+          icon="login"
+          variant="accent"
+          (clicked)="onIngresar()"
+        />
+      </div>
+    </div>
+  </div>
+</section>
