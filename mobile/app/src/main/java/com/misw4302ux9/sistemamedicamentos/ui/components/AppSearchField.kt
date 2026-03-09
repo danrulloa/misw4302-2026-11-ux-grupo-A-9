@@ -20,6 +20,10 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,7 +45,7 @@ fun AppSearchField(
     suggestions: List<String> = emptyList(),
     onSuggestionSelected: (String) -> Unit = {}
 ) {
-    val showSuggestions = value.isNotEmpty()
+    var expanded by remember { mutableStateOf(false) }
 
     Column(modifier = modifier.fillMaxWidth()) {
         Box(
@@ -50,7 +54,10 @@ fun AppSearchField(
         ) {
             OutlinedTextField(
                 value = value,
-                onValueChange = onValueChange,
+                onValueChange = {
+                    onValueChange(it)
+                    expanded = it.isNotEmpty()
+                },
                 trailingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
@@ -92,8 +99,8 @@ fun AppSearchField(
             }
         }
 
-        // Lista de sugerencias (Simulada)
-        if (showSuggestions && suggestions.isNotEmpty()) {
+        // Lista de sugerencias
+        if (expanded && suggestions.isNotEmpty()) {
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -110,9 +117,10 @@ fun AppSearchField(
                             text = suggestion,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable { 
+                                .clickable {
                                     onSuggestionSelected(suggestion)
                                     onValueChange(suggestion)
+                                    expanded = false // Ocultar al seleccionar
                                 }
                                 .padding(16.dp),
                             style = MaterialTheme.typography.bodyMedium,

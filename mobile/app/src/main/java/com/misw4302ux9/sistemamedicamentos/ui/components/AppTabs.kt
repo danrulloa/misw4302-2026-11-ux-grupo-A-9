@@ -44,7 +44,7 @@ fun AppTabs(
             .fillMaxWidth()
             .padding(horizontal = 20.dp) // Margen de 20dp a cada lado (372dp de ancho total en pantalla de 412dp)
             .height(48.dp),
-        containerColor = Color.Transparent,
+        containerColor = Color.White, // Cambiado de Transparent a White
         contentColor = PrimarioBase,
         indicator = { tabPositions ->
             if (selectedTabIndex < tabPositions.size) {
