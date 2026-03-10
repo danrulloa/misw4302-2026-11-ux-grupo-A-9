@@ -1,0 +1,62 @@
+<section class="registro">
+  <app-page-background />
+
+  <div class="registro__content">
+    <h1 class="registro__title">Registro usuario nuevo</h1>
+
+    <div class="registro__form">
+      <app-text-field
+        label="Nombre"
+        icon="person"
+        placeholder="Nombre y apellido"
+        fieldName="nombre"
+        [errorText]="errorNombre"
+        [(value)]="nombre"
+      />
+      <app-text-field
+        label="Correo"
+        icon="mail"
+        placeholder="nombre@correo.com"
+        fieldType="email"
+        fieldName="correo"
+        [errorText]="errorCorreo"
+        [(value)]="correo"
+      />
+      <app-text-field
+        label="Nueva contraseña"
+        icon="vpn_key"
+        placeholder="Ingresa tu nueva contraseña"
+        fieldType="password"
+        fieldName="password"
+        supportingText="Mín. 8 caracteres, letras, números y caracteres especiales"
+        [errorText]="errorPassword"
+        [(value)]="password"
+      />
+      <app-text-field
+        label="Confirmar contraseña"
+        icon="vpn_key"
+        placeholder="Ingresa tu nueva contraseña de nuevo"
+        fieldType="password"
+        fieldName="confirmPassword"
+        supportingText="Las contraseñas deben ser idénticas"
+        [errorText]="errorConfirmPassword"
+        [(value)]="confirmPassword"
+      />
+
+      <div class="registro__actions">
+        <app-ds-button
+          label="Cancelar"
+          icon="gpp_bad"
+          variant="primary"
+          (clicked)="onCancel()"
+        />
+        <app-ds-button
+          label="Registrar"
+          icon="check_circle_outline"
+          variant="accent"
+          (clicked)="onSubmit()"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+@use 'styles/typography' as typo;
+
+:host {
+  display: block;
+}
+
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0;
+
+  &__avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background-color: var(--color-secundario-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__initials {
+    @include typo.encabezado-medium;
+    color: var(--color-fondo-claro);
+    text-transform: uppercase;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__name {
+    @include typo.pantalla-pequena;
+    color: var(--color-textos-base);
+  }
+
+  &__relation {
+    @include typo.encabezado-pequena;
+    color: var(--color-textos-base);
+  }
+
+  &__enter-btn {
+    @include typo.etiqueta-grande;
+    padding: 10px 32px;
+    border: none;
+    border-radius: 16px;
+    background-color: var(--color-secundario-base);
+    color: var(--color-fondo-claro);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

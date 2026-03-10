@@ -1,0 +1,69 @@
+<div class="picker-overlay" (click)="onCancel()">
+  <div class="time-picker" (click)="$event.stopPropagation()">
+    <span class="time-picker__label">{{ mode() === 'dial' ? 'Seleccionar hora' : 'Hora' }}</span>
+
+    <div class="time-picker__input-row">
+      <div class="time-picker__inputs">
+        @if (mode() === 'keyboard') {
+          <div class="time-picker__field time-picker__field--active">
+            <input type="text" [ngModel]="selectedHour().toString().padStart(2, '0')" class="time-picker__field-input" />
+            <span class="time-picker__field-label">Horas</span>
+          </div>
+        } @else {
+          <button class="time-picker__field time-picker__field--active"
+            (click)="mode.set('keyboard')">
+            {{ selectedHour().toString().padStart(2, '0') }}
+          </button>
+        }
+        <span class="time-picker__colon">:</span>
+        @if (mode() === 'keyboard') {
+          <div class="time-picker__field">
+            <input type="text" [(ngModel)]="minutes" class="time-picker__field-input" />
+            <span class="time-picker__field-label">Minutos</span>
+          </div>
+        } @else {
+          <button class="time-picker__field" (click)="mode.set('keyboard')">
+            {{ minutes() }}
+          </button>
+        }
+      </div>
+      <div class="time-picker__period">
+        <button class="time-picker__period-btn"
+          [class.time-picker__period-btn--active]="period() === 'AM'"
+          (click)="period.set('AM')">AM</button>
+        <button class="time-picker__period-btn"
+          [class.time-picker__period-btn--active]="period() === 'PM'"
+          (click)="period.set('PM')">PM</button>
+      </div>
+    </div>
+
+    @if (mode() === 'dial') {
+      <div class="time-picker__clock">
+        @for (h of hours; track h) {
+          <button class="time-picker__hour"
+            [class.time-picker__hour--selected]="h === selectedHour()"
+            [style.--angle]="(h * 30) + 'deg'"
+            (click)="selectHour(h)">
+            {{ h }}
+          </button>
+        }
+        <div class="time-picker__center"></div>
+        <div class="time-picker__hand"
+          [style.transform]="'rotate(' + (selectedHour() * 30) + 'deg)'">
+        </div>
+      </div>
+    }
+
+    <div class="time-picker__actions">
+      <button class="time-picker__icon-btn" (click)="toggleMode()">
+        <span class="material-icons-outlined">
+          {{ mode() === 'dial' ? 'keyboard' : 'schedule' }}
+        </span>
+      </button>
+      <div class="time-picker__btns">
+        <button class="time-picker__btn" (click)="onCancel()">Cancelar</button>
+        <button class="time-picker__btn time-picker__btn--primary" (click)="onOk()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

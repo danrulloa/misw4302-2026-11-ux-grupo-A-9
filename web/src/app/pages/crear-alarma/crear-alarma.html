@@ -1,0 +1,124 @@
+<section class="crear-alarma">
+  <app-page-background />
+
+  <div class="crear-alarma__nav">
+    <app-navbar-auth
+      [userName]="userService.activeProfileName()"
+      [userRelation]="userService.activeProfileRelation()"
+      [activeTab]="0"
+    />
+  </div>
+
+  <div class="crear-alarma__content">
+    <h1 class="crear-alarma__title">CREAR ALARMA</h1>
+    <p class="crear-alarma__subtitle">Configura una nueva alarma de medicamento</p>
+
+    <app-divider />
+
+    <div class="crear-alarma__form">
+      <app-text-field
+        label="Nombre del medicamento"
+        icon="search"
+        placeholder="Buscar medicamento"
+        fieldName="medicamento"
+        [(value)]="medicamento"
+      />
+
+      <div class="crear-alarma__row">
+        <div class="crear-alarma__field-trigger" (click)="showDatePicker = true">
+          <app-text-field
+            label="Fecha"
+            icon="calendar_month"
+            [placeholder]="fecha || 'DD/MM/AAAA'"
+            fieldName="fecha"
+            [value]="fecha"
+            [disabled]="true"
+          />
+        </div>
+        <div class="crear-alarma__field-trigger" (click)="showTimePicker = true">
+          <app-text-field
+            label="Hora"
+            icon="schedule"
+            [placeholder]="hora || 'HH:MM'"
+            fieldName="hora"
+            [value]="hora"
+            [disabled]="true"
+          />
+        </div>
+      </div>
+
+      <div class="crear-alarma__dropdown">
+        <div class="crear-alarma__dropdown-trigger" (click)="toggleDropdown()">
+          <span class="crear-alarma__dropdown-label">
+            {{ selectedUnidad || 'Unidad de frecuencia' }}
+          </span>
+          <span class="material-icons-outlined crear-alarma__dropdown-icon"
+            [class.crear-alarma__dropdown-icon--expanded]="dropdownOpen">
+            keyboard_arrow_down
+          </span>
+        </div>
+        @if (dropdownOpen) {
+          <div class="crear-alarma__dropdown-menu">
+            @for (unidad of unidades; track unidad) {
+              <button
+                class="crear-alarma__dropdown-item"
+                [class.crear-alarma__dropdown-item--selected]="unidad === selectedUnidad"
+                (click)="selectUnidad(unidad)"
+              >
+                {{ unidad }}
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <app-text-field
+        label="Frecuencia"
+        icon="repeat"
+        placeholder="Ej: 8"
+        fieldName="frecuencia"
+        [(value)]="frecuencia"
+      />
+
+      <div class="crear-alarma__checkboxes">
+        <label class="crear-alarma__checkbox-item">
+          <input type="checkbox" [(ngModel)]="snoozeRepetir" />
+          <span>Repetir alarma si no se confirma la toma (Snooze)</span>
+        </label>
+        <label class="crear-alarma__checkbox-item">
+          <input type="checkbox" [(ngModel)]="snoozeEscalar" />
+          <span>Escalar alerta a cuidador si no se confirma</span>
+        </label>
+      </div>
+
+      <div class="crear-alarma__actions">
+        <app-ds-button
+          label="Cancelar"
+          icon="gpp_bad"
+          variant="primary"
+          (clicked)="onCancelar()"
+        />
+        <app-ds-button
+          label="Agregar"
+          icon="check_circle_outline"
+          variant="accent"
+          (clicked)="onAgregar()"
+        />
+      </div>
+    </div>
+  </div>
+
+  @if (showDatePicker) {
+    <app-date-picker
+      (selected)="onDateSelected($event)"
+      (cancelled)="showDatePicker = false"
+    />
+  }
+
+  @if (showTimePicker) {
+    <app-time-picker
+      (selected)="onTimeSelected($event)"
+      (cancelled)="showTimePicker = false"
+    />
+  }
+</section>
