@@ -13,8 +13,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AlarmAdd
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
+import androidx.compose.material3.DatePickerDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerDefaults
+import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -35,9 +45,17 @@ import com.misw4302ux9.sistemamedicamentos.ui.components.AppTabs
 import com.misw4302ux9.sistemamedicamentos.ui.components.AppTimePickerField
 import com.misw4302ux9.sistemamedicamentos.ui.components.AppTopBar
 import com.misw4302ux9.sistemamedicamentos.ui.components.ScreenBackground
+import com.misw4302ux9.sistemamedicamentos.ui.theme.AcentoBase
+import com.misw4302ux9.sistemamedicamentos.ui.theme.PrimarioBase
 import com.misw4302ux9.sistemamedicamentos.ui.theme.SistemaMedicamentosTheme
 import com.misw4302ux9.sistemamedicamentos.ui.theme.TextosBase
+import com.misw4302ux9.sistemamedicamentos.ui.theme.White
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CrearAlarmaScreen(
     onBackClick: () -> Unit,
@@ -53,7 +71,110 @@ fun CrearAlarmaScreen(
     var posponerDosVeces by remember { mutableStateOf(true) }
     var posponerIndefinida by remember { mutableStateOf(true) }
 
+    // Estado para el DatePicker
+    var showDatePicker by remember { mutableStateOf(false) }
+    val datePickerState = rememberDatePickerState()
+
+    // Estado para el TimePicker
+    var showTimePicker by remember { mutableStateOf(false) }
+    val timePickerState = rememberTimePickerState(
+        initialHour = 20,
+        initialMinute = 0,
+        is24Hour = false
+    )
+
     val medicamentosSugeridos = listOf("Ibuprofeno", "Magnesio", "Enalapril", "Atorvastatina")
+
+    // Diálogo de DatePicker con colores personalizados
+    if (showDatePicker) {
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    datePickerState.selectedDateMillis?.let { millis ->
+                        val date = Date(millis)
+                        val formatter = SimpleDateFormat("dd MMM yyyy", Locale("es", "ES"))
+                        fechaInicio = formatter.format(date)
+                    }
+                    showDatePicker = false
+                }) {
+                    Text("Aceptar", color = PrimarioBase)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDatePicker = false }) {
+                    Text("Cancelar", color = PrimarioBase)
+                }
+            },
+            colors = DatePickerDefaults.colors(
+                containerColor = White
+            )
+        ) {
+            DatePicker(
+                state = datePickerState,
+                colors = DatePickerDefaults.colors(
+                    titleContentColor = TextosBase,
+                    headlineContentColor = TextosBase,
+                    weekdayContentColor = TextosBase,
+                    subheadContentColor = TextosBase,
+                    yearContentColor = TextosBase,
+                    currentYearContentColor = PrimarioBase,
+                    selectedYearContentColor = White,
+                    selectedYearContainerColor = PrimarioBase,
+                    dayContentColor = TextosBase,
+                    selectedDayContainerColor = AcentoBase,
+                    selectedDayContentColor = White,
+                    todayContentColor = PrimarioBase,
+                    todayDateBorderColor = PrimarioBase
+                )
+            )
+        }
+    }
+
+    // Diálogo de TimePicker con colores personalizados
+    if (showTimePicker) {
+        AlertDialog(
+            onDismissRequest = { showTimePicker = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    val cal = Calendar.getInstance()
+                    cal.set(Calendar.HOUR_OF_DAY, timePickerState.hour)
+                    cal.set(Calendar.MINUTE, timePickerState.minute)
+                    val formatter = SimpleDateFormat("h:mm a", Locale.US)
+                    horaInicio = formatter.format(cal.time)
+                    showTimePicker = false
+                }) {
+                    Text("Aceptar", color = PrimarioBase)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showTimePicker = false }) {
+                    Text("Cancelar", color = PrimarioBase)
+                }
+            },
+            text = {
+                TimePicker(
+                    state = timePickerState,
+                    colors = TimePickerDefaults.colors(
+                        clockDialColor = White,
+                        clockDialSelectedContentColor = White,
+                        clockDialUnselectedContentColor = TextosBase,
+                        selectorColor = AcentoBase,
+                        periodSelectorBorderColor = PrimarioBase,
+                        periodSelectorSelectedContainerColor = AcentoBase,
+                        periodSelectorUnselectedContainerColor = White,
+                        periodSelectorSelectedContentColor = White,
+                        periodSelectorUnselectedContentColor = PrimarioBase,
+                        timeSelectorSelectedContainerColor = AcentoBase,
+                        timeSelectorUnselectedContainerColor = White,
+                        timeSelectorSelectedContentColor = White,
+                        timeSelectorUnselectedContentColor = PrimarioBase
+                    )
+                )
+            },
+            containerColor = White
+        )
+    }
 
     ScreenBackground {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -114,14 +235,14 @@ fun CrearAlarmaScreen(
                 ) {
                     AppDatePickerField(
                         value = fechaInicio,
-                        onClick = { /* TODO: Mostrar DatePicker */ },
+                        onClick = { showDatePicker = true }, // Abrir el diálogo real
                         label = "Fecha Inicio",
                         modifier = Modifier.weight(1.6f)
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                     AppTimePickerField(
                         value = horaInicio,
-                        onClick = { /* TODO: Mostrar TimePicker */ },
+                        onClick = { showTimePicker = true }, // Abrir el diálogo real
                         label = "Hora Inicio",
                         modifier = Modifier.weight(1f)
                     )
